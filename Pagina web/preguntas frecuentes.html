@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas Frecuentes - VYG</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #3b0966;
+      --panel-color: #4c1a7a;
+      --card-bg: #2a0747;
+      --text-color: #ffffff;
+      --accent-color: #d1b3ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mi-menu {
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .mi-menu ul {
+      list-style: none;
+      padding: 15px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .mi-menu a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .mi-menu a:hover {
+      color: var(--accent-color);
+    }
+
+    .container-faq {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .faq-panel {
+      background-color: var(--panel-color);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .faq-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .accordion {
+      --bs-accordion-bg: var(--card-bg);
+      --bs-accordion-color: var(--text-color);
+      --bs-accordion-border-color: rgba(255, 255, 255, 0.1);
+      --bs-accordion-btn-bg: var(--card-bg);
+      --bs-accordion-btn-color: var(--accent-color);
+      --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(209, 179, 255, 0.25);
+      --bs-accordion-active-bg: #370a5c;
+      --bs-accordion-active-color: #ffffff;
+      --bs-accordion-btn-icon-transform: rotate(-180deg);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .accordion-button {
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+      filter: brightness(0) invert(1);
+    }
+
+    .accordion-button::after {
+      filter: brightness(0) invert(0.8);
+    }
+
+    .accordion-body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-color);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="mi-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="preguntas frecuentes.html">FAQ</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container-faq">
+    <div class="faq-panel">
+      <h1 class="faq-title">Preguntas Frecuentes</h1>
+
+      <div class="accordion" id="accordionExample">
+        
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              ¿Con qué frecuencia suben nuevo contenido?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Actualizamos nuestra lista de videos y productos de manera semanal para mantener la plataforma siempre al día.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              ¿Cómo puedo enviar sugerencias de videos?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Puedes ponerte en contacto con nosotros a través de la sección de contacto en el menú superior o escribiéndonos directamente por nuestros canales oficiales.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              ¿Realizan envíos de los productos del catálogo?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Sí, los envíos se gestionan directamente previa coordinación. Revisa la sección de catálogo para ver la disponibilidad de stock.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+              ¿Los videos se pueden ver directamente desde la web?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Sí, todos los reproductores están integrados para que puedas reproducir el contenido de YouTube directamente dentro de la plataforma sin necesidad de salir.
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+              ¿Cómo puedo filtrar los videos por categorías?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              En la página principal dispones de un botón flotante de categorías en la esquina inferior izquierda. Al presionarlo se desplegará el menú lateral con las opciones de ordenamiento.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align: center; margin-top: 25px;">
+        <a href="index.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">&larr; Volver al inicio</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VYG</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #3b0966;
+      --panel-color: #4c1a7a;
+      --card-bg: #2a0747;
+      --text-color: #ffffff;
+      --sidebar-width: 230px;
+      --transition-speed: 0.3s;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .mi-menu {
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .mi-menu ul {
+      list-style: none;
+      padding: 15px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .mi-menu a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .mi-menu a:hover {
+      color: #d1b3ff;
+    }
+
+    .main-header {
+      width: 100%;
+      text-align: center;
+      padding: 25px 15px 10px 15px;
+    }
+
+    .main-title {
+      font-size: 2rem;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .main-wrapper {
+      display: flex;
+      flex: 1;
+      padding: 20px;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .sidebar {
+      background-color: var(--panel-color);
+      border-radius: 20px;
+      padding: 0;
+      width: 0;
+      opacity: 0;
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: width var(--transition-speed) ease, 
+                  padding var(--transition-speed) ease, 
+                  opacity var(--transition-speed) ease;
+    }
+
+    .sidebar.active {
+      width: var(--sidebar-width);
+      opacity: 1;
+      padding: 30px 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 20px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .sidebar nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
+    }
+
+    .sidebar nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 400;
+      display: block;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+
+    .sidebar nav a:hover {
+      opacity: 0.7;
+    }
+
+    .content-panel {
+      flex: 1;
+      min-width: 0;
+      background-color: var(--panel-color);
+      border-radius: 20px;
+      padding: 25px;
+      transition: flex var(--transition-speed) ease;
+    }
+
+    .content-panel h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .custom-carousel {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      margin-bottom: 30px;
+    }
+
+    .custom-carousel .carousel-caption {
+      background: rgba(42, 7, 71, 0.85);
+      backdrop-filter: blur(4px);
+      border-radius: 12px;
+      padding: 15px 20px;
+      bottom: 20px;
+    }
+
+    .custom-carousel .carousel-caption h5 {
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .video-card {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(3px);
+      z-index: 80;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .menu-toggle-container {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-button {
+      background-color: #1a101f;
+      border: none;
+      border-radius: 16px;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .menu-button:active {
+      transform: scale(0.95);
+    }
+
+    .menu-button span {
+      display: block;
+      width: 30px;
+      height: 4px;
+      background-color: #7b7185;
+      border-radius: 2px;
+    }
+
+    .menu-label {
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .main-title {
+        font-size: 1.5rem;
+      }
+
+      .content-panel {
+        padding: 15px;
+      }
+
+      .content-panel h1 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .sidebar {
+        position: fixed;
+        bottom: 90px;
+        left: 20px;
+        width: 240px;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        z-index: 90;
+        transform: translateY(20px) scale(0.95);
+        display: none;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      }
+
+      .sidebar.active {
+        display: block;
+        width: 240px;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="mi-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Listado</a></li>
+        <li><a href="preguntas frecuentes.html">FAQ</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="Tabla.html">Listado</a></li>
+      </ul>
+    </nav>
+    <div class="alert alert-dark text-center mb-0" role="alert">
+      Esperamos que disfrute de nuestra página hecha con amor :D
+    </div>
+  </header>
+
+  <div class="main-header" id="inicio">
+    <h1 class="main-title">Videos de YouTube que nos gustan</h1>
+  </div>
+  
+  <div class="main-wrapper">
+    
+    <aside class="sidebar" id="sidebarMenu">
+      <h2>Categorías</h2>
+      <nav>
+        <ul>
+          <li><a href="#">Por letra</a></li>
+          <li><a href="#">A-Z</a></li>
+          <li><a href="#">Z-A</a></li>
+          <li><a href="#">Por categoría<br>de video</a></li>
+          <li><a href="#">Directos<br>resubidos</a></li>
+          <li><a href="#">Videos<br>normales</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content-panel" id="videos">
+      <h1>Destacados y Videos</h1>
+
+      <div id="carouselExampleCaptions" class="carousel slide custom-carousel" data-bs-ride="false">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/BESfaDhjE4s?si=ac4-kL8-P6FKyzvu" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Primer Video Destacado</h5>
+              <p>Illo juan jugando silent hill 4. Muy recomendado.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/aZa9o-MHINw?si=HW7mYLu9_b1I4i4N" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Segundo Video Destacado</h5>
+              <p>Fernanfloo jugando un juego de pizza antiguo de terror.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/kAXSVbonQr8?si=Zw-2hoz6xqY5Q8Tf" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Tercer Video Destacado</h5>
+              <p>Fernanfloo jugando a un juego de los teletubbies de terror.</p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/50Nk_u3WBME?si=xprmh__G3n_oktff" title="YouTube video player" allowfullscreen></iframe>
+            </div>
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Cuarto Video Destacado</h5>
+              <p>Una historia que merece la pena ser oída.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
+
+      <section class="video-grid">
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/BVXR6fkohVY?si=lkwtWkzOjAbbl3HD" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/BESfaDhjE4s?si=ac4-kL8-P6FKyzvu" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/P7IUlGZ90qg?si=Y7B0A6BHeAGx51C2" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/CGApAS-gNXg?si=Akm0jcipBcBT8HGn" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/aZa9o-MHINw?si=HW7mYLu9_b1I4i4N" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/Od2lQZVzubI?si=p-YmPGXKakAyz1-D" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/50Nk_u3WBME?si=xprmh__G3n_oktff" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/4eK8f1Ewbcc?si=AOXDr2wv6MlV8yxI" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/p4flJDQ-kIQ?si=aNMRRz9ayXbpLIN3" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+        
+        <article class="video-card">
+          <iframe src="https://www.youtube.com/embed/kAXSVbonQr8?si=Zw-2hoz6xqY5Q8Tf" title="YouTube video player" allowfullscreen></iframe>
+        </article>
+      </section>
+    </main>
+
+  </div>
+
+  <div class="overlay" id="overlay"></div>
+
+  <div class="menu-toggle-container">
+    <button class="menu-button" id="menuBtn" aria-label="Abrir menú de categorías">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <span class="menu-label">Categorías</span>
+  </div>
+
+  <footer class="d-flex justify-content-center flex-wrap gap-3 my-4">
+    <a href="productos.html" class="btn btn-outline-light px-4 py-2">Ir a la página de productos</a>
+    <a href="contacto.html" class="btn btn-outline-light px-4 py-2">Ir a la página de contacto</a>
+    <a href="preguntas frecuentes.html" class="btn btn-outline-light px-4 py-2">Ir a la página de preguntas frecuentes</a>
+    <a href="tabla.html" class="btn btn-outline-light px-4 py-2">Ir a la página de listados</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.getElementById('sidebarMenu');
+      const overlay = document.getElementById('overlay');
+
+      function toggleMenu() {
+        sidebar.classList.toggle('active');
+        
+        if (window.innerWidth <= 768) {
+          overlay.classList.toggle('active');
+        }
+      }
+
+      menuBtn.addEventListener('click', toggleMenu);
+
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

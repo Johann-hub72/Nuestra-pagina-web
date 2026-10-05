@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muestra de Productos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #1a0933;
+      color: #ffffff;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #320d4d;
+      padding: 15px 30px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      border: 1px solid #6c2ba7;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #d1b3ff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+
+    .catalog-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background-color: #4a1570;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      width: 300px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #6c2ba7;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: #d1b3ff; 
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .card-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #0dcaf0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="index.html">&larr; Volver al Index</a>
+    </nav>
+  </header>
+
+  <h1>Catálogo de Productos</h1>
+
+  <main class="catalog-container">
+
+    <article class="card">
+      <img src="Imagenes/Haru.jpg" alt="Producto 1">
+      <div class="card-content">
+        <h2 class="card-title">Haru Urara</h2>
+        <p class="card-description">La caballa campeona de nuestros corazones. Excelente calidad y acabado.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Caballa.jpg" alt="Producto 2">
+      <div class="card-content">
+        <h2 class="card-title">Tokai Teio</h2>
+        <p class="card-description">Tokai teio de umamusume con un excelente acabado.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Madoka.jpg" alt="Producto 3">
+      <div class="card-content">
+        <h2 class="card-title">Madoka</h2>
+        <p class="card-description">Diseño moderno e innovador de madoka, ideal para quererla.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Nekoparita.jpg" alt="Producto 4">
+      <div class="card-content">
+        <h2 class="card-title">Chochola</h2>
+        <p class="card-description">Un peluche muy bonito de una monita muy bonita. Excelente calidad y acabado.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Sakura.jpg" alt="Producto 5">
+      <div class="card-content">
+        <h2 class="card-title">Sakura Kinomoto</h2>
+        <p class="card-description">La simpatica sakura hara que todo este bien en tu hogar.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Satori.jpg" alt="Producto 6">
+      <div class="card-content">
+        <h2 class="card-title">Satori</h2>
+        <p class="card-description">Proveniente de gensokyo a comer.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Sayoti.jpg" alt="Producto 7">
+      <div class="card-content">
+        <h2 class="card-title">Sayori</h2>
+        <p class="card-description">Mantenganla lejos de armas blancas. Excelente calidad y acabado.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Sonico.jpg" alt="Producto 8">
+      <div class="card-content">
+        <h2 class="card-title">Sonico</h2>
+        <p class="card-description">Ex de fernanfloo vuelta miniaturita.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Teta.jpg" alt="Producto 9">
+      <div class="card-content">
+        <h2 class="card-title">Kasane teto</h2>
+        <p class="card-description">quimera de 31 años que no parece, ideal para uso diario.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <img src="Imagenes/Tonta.jpg" alt="Producto 10">
+      <div class="card-content">
+        <h2 class="card-title">Cirno</h2>
+        <p class="card-description">Tonta.</p>
+        <span class="card-price">$14.990</span>
+      </div>
+    </article>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - VYG</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;1,700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #3b0966;
+      --panel-color: #4c1a7a;
+      --card-bg: #2a0747;
+      --text-color: #ffffff;
+      --accent-color: #d1b3ff;
+      --gold-accent: #ffd700;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mi-menu {
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .mi-menu ul {
+      list-style: none;
+      padding: 15px;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .mi-menu a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.2s ease;
+    }
+
+    .mi-menu a:hover {
+      color: var(--accent-color);
+    }
+
+    .card-custom {
+      background-color: var(--panel-color);
+      border-radius: 20px;
+      border: none;
+    }
+
+    label, 
+    .form-label, 
+    .form-check-label, 
+    .form-text, 
+    h1, h4, 
+    a, 
+    .input-group-text,
+    span {
+      color: var(--text-color) !important;
+    }
+
+    .link-blanco {
+      color: var(--text-color) !important;
+      text-decoration: underline;
+    }
+
+    .link-blanco:hover {
+      color: var(--accent-color) !important;
+    }
+
+    .input-group-text {
+      background-color: var(--card-bg);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .mensaje-exito {
+      display: none;
+      background-color: rgba(209, 179, 255, 0.2);
+      border: 1px solid var(--accent-color);
+      color: var(--gold-accent) !important;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado y Navegación Principal -->
+  <header>
+    <nav class="mi-menu">
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="productos.html">Productos</a></li>
+        <li><a href="tabla.html">Listado</a></li>
+        <li><a href="preguntas frecuentes.html">FAQ</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container my-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        
+        <h1 class="text-center mb-4 text-uppercase fw-bold">Contacto</h1>
+        
+        <div class="card card-custom p-4 p-md-5 shadow-lg">
+          <form class="row g-3" id="formContacto">
+            
+            <div class="col-12">
+              <h4 class="border-bottom border-light pb-2">1. Datos Personales / Identificación</h4>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" placeholder="Ej: Juan" required>
+            </div>
+            
+            <div class="col-12 col-md-6">
+              <label for="apellido" class="form-label">Apellido</label>
+              <input type="text" class="form-control" id="apellido" placeholder="Ej: Pérez" required>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="rut" class="form-label">RUT / Identificación</label>
+              <input type="text" class="form-control" id="rut" placeholder="12.345.678-K" required>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <label for="email" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+              <div class="form-text">No compartiremos tu correo con nadie.</div>
+            </div>
+          
+            <div class="col-12 col-md-4">
+              <label for="telefono" class="form-label">Teléfono de Contacto</label>
+              <div class="input-group">
+                <span class="input-group-text">+56 9</span>
+                <input type="tel" class="form-control" id="telefono" placeholder="12345678" required>
+              </div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <h4 class="border-bottom border-light pb-2">2. Información de Perfil y Preferencias</h4>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="region" class="form-label">Región</label>
+              <select class="form-select" id="region" required>
+                <option value="" disabled selected>Selecciona tu ubicación...</option>
+                <option value="1">Región de Valparaíso</option>
+                <option value="2">Región Metropolitana</option>
+                <option value="3">Región del Biobío</option>
+                <option value="4">Región de La Araucanía</option>
+                <option value="5">Región de Los Ríos</option>
+              </select>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="fecha" class="form-label">Fecha de Nacimiento o Atención</label>
+              <input type="date" class="form-control" id="fecha" required>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label d-block">Tipo de Consulta / Rol</label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoConsulta" id="radioCliente" value="cliente" checked>
+                <label class="form-check-label" for="radioCliente">Usuario</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoConsulta" id="radioProveedor" value="proveedor">
+                <label class="form-check-label" for="radioProveedor">Ganas de ayudar</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="tipoConsulta" id="radioSoporte" value="soporte">
+                <label class="form-check-label" for="radioSoporte">Consejos</label>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label for="nivelInteres" class="form-label">Nivel de Interés / Prioridad</label>
+              <input type="range" class="form-range" min="1" max="5" id="nivelInteres">
+              <div class="d-flex justify-content-between">
+                <span>Bajo (1)</span>
+                <span>Medio (3)</span>
+                <span>Alto (5)</span>
+              </div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <h4 class="border-bottom border-light pb-2">3. Documentación y Comentarios</h4>
+            </div>
+
+            <div class="col-12">
+              <label for="archivo" class="form-label">Adjuntar Documento o Fotografía (PDF, JPG, PNG)</label>
+              <input class="form-control" type="file" id="archivo" accept=".pdf, .jpg, .jpeg, .png">
+            </div>
+
+            <div class="col-12">
+              <label for="comentarios" class="form-label">Detalle o Comentarios Adicionales</label>
+              <textarea class="form-control" id="comentarios" rows="4" placeholder="Escribe aquí tu mensaje..."></textarea>
+            </div>
+
+            <div class="col-12 mt-4">
+              <h4 class="border-bottom border-light pb-2">4. Confirmación</h4>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="terminos" required>
+                <label class="form-check-label" for="terminos">
+                  Acepto los <a href="#" class="link-blanco">Términos y Condiciones</a>
+                </label>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="boletin" checked>
+                <label class="form-check-label" for="boletin">Deseo suscribirme al boletín de noticias</label>
+              </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+              <button type="reset" class="btn btn-outline-light">Limpiar</button>
+              <button type="submit" class="btn btn-info px-4">Enviar</button>
+            </div>
+
+          </form>
+
+          <div id="mensajeExito" class="mensaje-exito">
+            ¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px;">
+          <a href="index.html" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">&larr; Volver al inicio</a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.getElementById('formContacto').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+
+      this.reset();
+
+      const mensaje = document.getElementById('mensajeExito');
+      mensaje.style.display = 'block';
+
+      setTimeout(() => {
+        mensaje.style.display = 'none';
+      }, 4000);
+    });
+  </script>
+</body>
+</html>
